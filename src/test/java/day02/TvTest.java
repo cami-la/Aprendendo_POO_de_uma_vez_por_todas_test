@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TvTest {
   private Tv tv;
@@ -46,7 +46,7 @@ class TvTest {
     //given
     this.tv.setVolume(10);
     //when
-    RuntimeException actual = assertThrows(RuntimeException.class, () -> {
+    RuntimeException actual = Assertions.assertThrows(RuntimeException.class, () -> {
       this.tv.turnUpVolume();
     });
     int actualVolume = this.tv.getVolume();
