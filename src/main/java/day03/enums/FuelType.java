@@ -1,4 +1,4 @@
-package main.java.day03;
+package main.java.day03.enums;
 
 import java.math.BigDecimal;
 

@@ -1,5 +1,7 @@
 package main.java.day03;
 
+import main.java.day03.enums.FuelType;
+
 import java.math.BigDecimal;
 
 public class GasStation {
@@ -22,7 +24,7 @@ public class GasStation {
       return quantityFinalFuel;
     } else {
       throw new IllegalArgumentException(
-          String.format("Impossible to supply this quantity %s of fuel!", quantityLiterSupply));
+          String.format("Impossible to supply this quantity %s of fuel!", value));
     }
   }
 
