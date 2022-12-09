@@ -1,13 +1,12 @@
 package test.java.day04;
 
-import main.java.day04.BankAccount;
+import main.java.day04.SavingsAccount2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,15 +15,15 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BankAccountTest {
-  private BankAccount bankAccount;
+  private SavingsAccount2 bankAccount;
 
   @BeforeEach
   void setUp() {
-    bankAccount = new BankAccount("123456", "Cami");
+    bankAccount = new SavingsAccount2("123456", "Cami");
   }
 
   @ParameterizedTest
-  @MethodSource("bigDecimalProvider")
+  @MethodSource("bigDecimalProviderToWithdraw")
   void shouldThrowIllegalArgumentException_WhenValuesIsZero(BigDecimal valuetoWithdraw) {
     //given
     //when
@@ -53,26 +52,13 @@ class BankAccountTest {
     Assertions.assertEquals(expected, actual);
   }
 
-  @Test
-  void shouldThrowIllegalArgumentException_WhenTrytoDepositValuesIsZero() {
+  @ParameterizedTest
+  @MethodSource("bigDecimalProviderToDeposit")
+  void shouldThrowIllegalArgumentException_WhenTryToDepositValuesIsLessThan0(BigDecimal valuetoWithdraw) {
     //given
-    BigDecimal value = BigDecimal.ZERO;
     //when
     IllegalArgumentException actual = assertThrows(IllegalArgumentException.class, () -> {
-      bankAccount.toDeposit(value);
-    });
-    //then
-    String expected = "Invalid value to deposit";
-    Assertions.assertEquals(expected, actual.getMessage());
-  }
-
-  @Test
-  void shouldThrowIllegalArgumentException_WhenTryToDepositValuesIsLessThan0() {
-    //given
-    BigDecimal value = BigDecimal.valueOf(-10);
-    //when
-    IllegalArgumentException actual = assertThrows(IllegalArgumentException.class, () -> {
-      bankAccount.toDeposit(value);
+      bankAccount.toDeposit(valuetoWithdraw);
     });
     //then
     String expected = "Invalid value to deposit";
@@ -91,8 +77,11 @@ class BankAccountTest {
     Assertions.assertEquals(expected, actual);
   }
 
-  static Stream<BigDecimal> bigDecimalProvider() {
+  static Stream<BigDecimal> bigDecimalProviderToWithdraw() {
     return Stream.of(BigDecimal.ZERO, BigDecimal.valueOf(-100), BigDecimal.valueOf(350));
   }
 
+  static Stream<BigDecimal> bigDecimalProviderToDeposit() {
+    return Stream.of(BigDecimal.ZERO, BigDecimal.valueOf(-100));
+  }
 }
