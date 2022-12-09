@@ -14,6 +14,12 @@ public class Person {
     this.name = name;
   }
 
+  public Person(String name, Person mother, Person father) {
+    this.name = name;
+    this.mother = mother;
+    this.father = father;
+  }
+
   public Boolean isSiblings(Person person) {
     return this.mother.equals(person.mother) || this.father.equals(person.father);
   }

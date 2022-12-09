@@ -15,7 +15,7 @@ class PersonTest {
   }
 
   @Test
-  void shouldReturnTrue_WhenPersonIsSame() {
+  void shouldVerifierIsSameObjectReturnTrue_WhenPersonIsSame() {
     //given
     Person mother = new Person("Mother");
 
@@ -30,7 +30,7 @@ class PersonTest {
   }
 
   @Test
-  void shouldReturnFalse_WhenPersonDoesntSame() {
+  void shouldVerifierIsSameObjectReturnFalse_WhenPersonDoesntSame() {
     //given
     Person mother = new Person("Mother");
     Person mother2 = new Person("Mother 1");
@@ -68,7 +68,6 @@ class PersonTest {
 
     Person father = new Person("Father");
     Person father2 = new Person("Father 2");
-
 
     person.setMother(mother);
     person.setFather(father);
