@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public abstract class BankAccount {
   //attributes
-  protected String number;
-  protected String nameCustomer;
-  protected BigDecimal balance;
+  private String number;
+  private String nameCustomer;
+  private BigDecimal balance;
 
   //methods
   public abstract void toWithdraw(BigDecimal value);
@@ -17,7 +17,7 @@ public abstract class BankAccount {
     return number;
   }
 
-  public void setNumber(String number) {
+  protected void setNumber(String number) {
     this.number = number;
   }
 

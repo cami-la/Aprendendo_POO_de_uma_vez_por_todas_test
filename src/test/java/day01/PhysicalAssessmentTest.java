@@ -24,13 +24,13 @@ class PhysicalAssessmentTest {
     double height = 1.71d;
     this.physicalAssessment.setWeight(weight);
     this.physicalAssessment.setHeight(height);
+    DecimalFormat df = new DecimalFormat("#.0");
     //when
     this.physicalAssessment.calculateImc();
     double actual = physicalAssessment.getImc();
     //then
     double expected = 23.6;
 
-    DecimalFormat df = new DecimalFormat("#.0");
     String expectedFormat = df.format(expected);
     String actualFormat = df.format(actual);
     Assertions.assertEquals(expectedFormat, actualFormat);
